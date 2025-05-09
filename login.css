@@ -1,0 +1,90 @@
+/* static/css/login.css */
+
+/* ---------- Login Page Styles ---------- */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: var(--light-lavender);
+}
+
+.login-box {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 2rem;
+    color: var(--deep-blue);
+    font-size: 1.8rem;
+}
+
+.brand-highlight {
+    color: var(--lavender);
+    font-weight: 700;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark-gray);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--lavender);
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: var(--aqua);
+    box-shadow: 0 0 5px rgba(38, 198, 218, 0.3);
+}
+
+.btn-login {
+    background: var(--lavender);
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.btn-login:hover {
+    background: var(--deep-blue);
+}
+
+.register-link {
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: var(--aqua);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,168 @@
+:root {
+    --lavender: #b39ddb;
+    --deep-blue: #283593;
+    --light-lavender: #f3e5f5;
+    --aqua: #26c6da;
+    --white: #ffffff;
+    --gray: #444;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--light-lavender);
+    color: var(--gray);
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-container {
+    padding: 2rem;
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h2 {
+    font-size: 2rem;
+    color: var(--deep-blue);
+}
+
+.welcome-message {
+    margin-top: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.user-name {
+    font-weight: bold;
+    color: var(--aqua);
+}
+
+.motivational-tip {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #6a1b9a;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mentee-card, .mentor-card {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.mentee-info, .mentor-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.avatar, .avatar-large {
+    background-color: var(--lavender);
+    color: var(--white);
+    font-weight: bold;
+    font-size: 1.4rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+}
+
+.avatar-large {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.6rem;
+}
+
+.action-buttons, .mentee-actions, .approval-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--white);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--lavender);
+}
+
+.btn-secondary {
+    background-color: var(--deep-blue);
+}
+
+.btn-success {
+    background-color: #4caf50;
+}
+
+.btn-danger {
+    background-color: #f44336;
+}
+
+.btn-warning {
+    background-color: #ffa726;
+}
+
+.btn-chat {
+    background-color: #26c6da;
+}
+
+.btn-video {
+    background-color: #8e24aa;
+}
+
+.btn-logout {
+    background-color: #d32f2f;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+input[type="datetime-local"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-right: 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    color: var(--gray);
+}
+
+.empty-state i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--lavender);
+}

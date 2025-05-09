@@ -1,0 +1,88 @@
+/* static/css/signup.css */
+
+/* ---------- Signup Page Styles ---------- */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    background: var(--light-lavender);
+}
+
+.signup-box {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+}
+
+.signup-box h2 {
+    margin-bottom: 1.5rem;
+    color: var(--deep-blue);
+    font-size: 1.8rem;
+}
+
+.signup-box .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.signup-box label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--dark-gray);
+}
+
+.signup-box input,
+.signup-box select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--lavender);
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.signup-box input:focus,
+.signup-box select:focus {
+    border-color: var(--aqua);
+    box-shadow: 0 0 6px rgba(38, 198, 218, 0.3);
+}
+
+.btn-signup {
+    background-color: var(--lavender);
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-signup:hover {
+    background-color: var(--deep-blue);
+}
+
+.login-link {
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+}
+
+.login-link a {
+    color: var(--aqua);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

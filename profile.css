@@ -1,0 +1,72 @@
+:root {
+    --lavender: #b39ddb;
+    --deep-blue: #283593;
+    --light-lavender: #f3e5f5;
+    --aqua: #26c6da;
+    --white: #ffffff;
+    --gray: #444;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: var(--deep-blue);
+    margin-bottom: 1.5rem;
+}
+
+form label {
+    display: block;
+    font-weight: 600;
+    margin: 1rem 0 0.3rem;
+    color: var(--gray);
+}
+
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+form input[type="text"]:focus,
+form textarea:focus {
+    border-color: var(--lavender);
+    outline: none;
+}
+
+form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    display: block;
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--aqua);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--deep-blue);
+}

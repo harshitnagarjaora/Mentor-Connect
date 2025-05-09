@@ -1,0 +1,146 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2><i class="fas fa-tachometer-alt"></i> {{ role.title() }} Dashboard</h2>
+        <div class="welcome-message">
+            <p>Welcome back, <span class="user-name">{{ name }}</span>!</p>
+            <div class="motivational-tip">
+                <i class="fas fa-lightbulb"></i>
+                <span>
+                    {% if role == 'mentor' %}
+                        "Teaching is the greatest act of optimism."
+                    {% else %}
+                        "The beautiful thing about learning is that no one can take it away from you."
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-content">
+        {% if role == 'mentor' %}
+        <div class="mentor-section">
+            <div class="section-header">
+                <h3><i class="fas fa-users"></i> Your Mentees</h3>
+                <div class="action-buttons">
+                    <a href="{{ url_for('update_profile') }}" class="btn-nav">Profile</a>
+                    <a href="{{ url_for('chat') }}" class="btn btn-chat"><i class="fas fa-comments"></i> Chat</a>
+                    <a href="{{ url_for('video_call') }}" class="btn btn-video"><i class="fas fa-video"></i> Video Call</a>
+                </div>
+            </div>
+            
+
+            {% if matches %}
+            <div class="mentee-list">
+                {% for match in matches %}
+                <div class="mentee-card">
+                    <div class="mentee-info">
+                        <div class="avatar">{{ match['mentee_name'][0]|upper }}</div>
+                        <div>
+                            <h4>{{ match['mentee_name'] }}</h4>
+                            <p>
+                                {% if match['scheduled_time'] %}
+                                    Scheduled at: {{ match['scheduled_time'] }}<br>
+                                    Status: <strong>{{ match['status']|capitalize }}</strong>
+                                {% else %}
+                                    No session scheduled
+                                {% endif %}
+                            </p>
+                        </div>
+                        
+                    </div>
+                    <div class="mentee-actions">
+                        <a href="#" class="btn btn-small btn-primary"><i class="fas fa-envelope"></i> Message</a>
+                        <a href="#" class="btn btn-small btn-secondary"><i class="fas fa-calendar-plus"></i> Schedule</a>
+                    </div>
+
+                    {% if match['status'] == 'pending' %}
+                    <div class="approval-actions">
+                        <a href="{{ url_for('respond_meeting', match_id=match['id'], action='accept') }}" class="btn btn-small btn-success"><i class="fas fa-check"></i> Accept</a>
+                        <a href="{{ url_for('respond_meeting', match_id=match['id'], action='reject') }}" class="btn btn-small btn-danger"><i class="fas fa-times"></i> Reject</a>
+                        <a href="{{ url_for('respond_meeting', match_id=match['id'], action='reschedule') }}" class="btn btn-small btn-warning"><i class="fas fa-edit"></i> Reschedule</a>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-user-slash"></i>
+                <p>No mentees assigned yet</p>
+                <a href="#" class="btn btn-primary">Find Mentees</a>
+            </div>
+            {% endif %}
+        </div>
+
+        {% elif role == 'mentee' %}
+        <div class="mentee-section">
+            {% if matches %}
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="avatar-large">{{ matches[0]['mentor_name'][0]|upper }}</div>
+                    <div>
+                        <h3>Your Mentor: {{ matches[0]['mentor_name'] }}</h3>
+                        <p>Status: <strong>{{ matches[0]['status'] }}</strong></p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="{{ url_for('update_profile') }}" class="btn-nav">Profile</a>
+                    <a href="{{ url_for('chat') }}" class="btn btn-chat"><i class="fas fa-comments"></i> Chat</a>
+                    <a href="{{ url_for('video_call') }}" class="btn btn-video"><i class="fas fa-video"></i> Video Call</a>
+                </div>
+                <!-- Filter Section -->
+<div class="filter-section">
+    <h3>Find Your Perfect Match</h3>
+    <form method="GET" action="{{ url_for('filter_profiles') }}" class="filter-form">
+        <input type="text" name="expertise" placeholder="Expertise (e.g. Python, UX Design)">
+        <input type="text" name="education" placeholder="Education (e.g. B.Tech, MBA)">
+        <select name="role">
+            <option value="">Select Role</option>
+            <option value="mentor">Mentor</option>
+            <option value="mentee">Mentee</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+                {% if matches[0]['scheduled_time'] %}
+                <div class="scheduled-session">
+                    <h4><i class="fas fa-calendar-check"></i> Upcoming Session</h4>
+                    <p>{{ matches[0]['scheduled_time'] }}</p>
+                    <p>Status: <strong>{{ matches[0]['status']|capitalize }}</strong></p>
+                    {% if matches[0]['status'] != 'accepted' %}
+                    <a href="#" class="btn btn-small btn-warning"><i class="fas fa-edit"></i> Reschedule</a>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="schedule-form">
+                    <h4><i class="fas fa-calendar-plus"></i> Schedule a Session</h4>
+                    <form method="post" action="{{ url_for('schedule_session') }}">
+                        <label for="scheduled_time">Select Date & Time:</label>
+                        <input type="datetime-local" id="scheduled_time" name="scheduled_time" required>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Confirm</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <p>No mentor assigned yet</p>
+                <a href="#" class="btn btn-primary">Find a Mentor</a>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="dashboard-footer">
+        <form method="post" action="{{ url_for('logout') }}">
+            <button type="submit" class="btn btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

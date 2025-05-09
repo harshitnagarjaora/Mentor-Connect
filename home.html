@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="hero-section">
+    <div class="hero-text">
+        <h2>Welcome to <span class="highlight">Guidance Grid</span></h2>
+        <p>Connecting mentors and mentees seamlessly through smart scheduling, real-time chat, and video calls. Empower your journey with meaningful mentorship.</p>
+
+        <div class="hero-buttons">
+            <a href="/dashboard" class="hero-btn mentor-btn">Go to Dashboard</a>
+            <a href="/logout" class="hero-btn mentee-btn">Logout</a>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/mentorship.svg') }}" alt="Mentorship Illustration" class="svg-fix">
+    </div>
+</div>
+
+<!-- Filter Section -->
+<div class="filter-section">
+    <h3>Find Your Perfect Match</h3>
+    <form method="GET" action="{{ url_for('filter_results') }}" class="filter-form">
+        <input type="text" name="expertise" placeholder="Expertise (e.g. Python, UX Design)">
+        <input type="text" name="education" placeholder="Education (e.g. B.Tech, MBA)">
+        <select name="role">
+            <option value="">Select Role</option>
+            <option value="mentor">Mentor</option>
+            <option value="mentee">Mentee</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Results will be shown in the filter_results route -->
+
+{% endblock %}

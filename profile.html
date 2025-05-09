@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="form-container">
+    <h2>Update Your Profile</h2>
+    <form method="POST" action="{{ url_for('update_profile') }}">
+        <label>Bio:</label>
+        <textarea name="bio" required>{{ profile.bio }}</textarea>
+
+        <label>Expertise:</label>
+        <input type="text" name="expertise" value="{{ profile.expertise }}" required>
+
+        <label>Education:</label>
+        <input type="text" name="education" value="{{ profile.education }}" required>
+
+        <label>Skills:</label>
+        <input type="text" name="skills" value="{{ profile.skills }}" required>
+
+        <label>Experience:</label>
+        <input type="text" name="experience" value="{{ profile.experience }}" required>
+
+        <button type="submit">Save Profile</button>
+    </form>
+</div>
+{% endblock %}

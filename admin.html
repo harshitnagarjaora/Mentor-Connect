@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<h3>All Users</h3>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Peer ID</th>
+        <th>Expertise</th>
+        <th>Education</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user['id'] }}</td>
+        <td>{{ user['name'] }}</td>
+        <td>{{ user['email'] }}</td>
+        <td>{{ user['role'] }}</td>
+        <td>{{ user['peer_id'] or '—' }}</td>
+        <td>{{ user['expertise'] or '—' }}</td>
+        <td>{{ user['education'] or '—' }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3 style="margin-top: 30px;">All Matches</h3>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Match ID</th>
+        <th>Mentor</th>
+        <th>Mentee</th>
+        <th>Scheduled Time</th>
+        <th>Status</th>
+    </tr>
+    {% for match in matches %}
+    <tr>
+        <td>{{ match['id'] }}</td>
+        <td>{{ match['mentor_name'] }}</td>
+        <td>{{ match['mentee_name'] }}</td>
+        <td>{{ match['scheduled_time'] or "Not scheduled yet" }}</td>
+        <td>{{ match['status'] or 'Pending' }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3 style="margin-top: 30px;">Message Log</h3>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Message</th>
+        <th>Timestamp</th>
+    </tr>
+    {% for message in messages %}
+    <tr>
+        <td>{{ message['id'] }}</td>
+        <td>{{ message['sender_name'] }}</td>
+        <td>{{ message['receiver_name'] }}</td>
+        <td>{{ message['message'] }}</td>
+        <td>{{ message['timestamp'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

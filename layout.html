@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Guidance Grid</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="top-banner">
+        <p>"Empower. Elevate. Enlighten." — Your Mentorship Journey Begins Here</p>
+    </div>
+
+    <header class="main-header">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo-icon">
+            <span>Guidance Grid</span>
+          </div>
+        <nav class="nav-bar">
+            <a href="{{ url_for('home') }}" class="btn-nav">Home</a>
+            {% if 'user_id' in session %}
+                <a href="{{ url_for('dashboard') }}" class="btn-nav">Dashboard</a>
+                <form method="post" action="{{ url_for('logout') }}" class="logout-form">
+                    <button type="submit" class="btn-nav logout">Logout</button>
+                </form>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-nav">Login</a>
+                <a href="{{ url_for('signup') }}" class="btn-nav btn-primary">Signup</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main class="main-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Bridging the Gap Between Mentors and Mentees</h1>
+                <p>Connect with experienced mentors worldwide and take your career to the next level with personalized guidance and support.</p>
+                <div class="cta-buttons">
+                    <a href="signup?type=mentee" class="btn-primary">Find a Mentor <i class="fas fa-arrow-right"></i></a>
+                    <a href="signup?type=mentor" class="btn-outline">Become a Mentor</a>
+                </div>
+            </div>
+        </section>
+                <!-- Features Section -->
+                <section class="features">
+                    <div class="container">
+                        <h2>Key Features</h2>
+                        <div class="feature-grid">
+                            <div class="feature-card">
+                                <i class="fas fa-users"></i>
+                                <h3>Smart Matching</h3>
+                                <p>Find the perfect mentor based on your goals and interests</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-calendar"></i>
+                                <h3>Easy Scheduling</h3>
+                                <p>Book sessions with automated calendar management</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-video"></i>
+                                <h3>Video Meetings</h3>
+                                <p>Connect face-to-face with integrated video calls</p>
+                            </div>
+                            <div class="feature-card">
+                                <i class="fas fa-comments"></i>
+                                <h3>Chat Support</h3>
+                                <p>Real-time messaging during sessions</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Featured Mentors Section -->
+<section class="featured-mentors">
+    <div class="container">
+        <h2 class="section-title">Our Esteemed Faculty Mentors</h2>
+        <p class="section-description">
+            Connect with our experienced academic mentors who are ready to guide you in research and career development. 
+            Book a session to gain insights from their extensive expertise.
+        </p>
+        
+        <div class="mentors-grid">
+            <!-- Dr. Shilpa Bhalerao -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Dr. Shilpa Bhalerao">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Dr. Shilpa<span class="star">★</span> 4.9</h3>
+                        <h4 class="mentor-last-name">Bhalerao</h4>
+                        <p class="mentor-title">PhD in Computer Science (24+ Years Experience)</p>
+                    </div>
+                </div>
+                <div class="match-indicator green">
+                    <span>95% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Agile Development</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Cyber Security</span>
+                    <span class="skill-tag">25+ Papers</span>
+                    <span class="skill-tag more">4 Patents</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Dr. Praveen Gupta -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Praveen Gupta">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Dr. Praveen<span class="star">★</span> 4.8</h3>
+                        <h4 class="mentor-last-name">Gupta</h4>
+                        <p class="mentor-title">PhD in Computer Engineering (24 Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator green">
+                    <span>88% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Network Security</span>
+                    <span class="skill-tag">Ad hoc Networks</span>
+                    <span class="skill-tag">24 Papers</span>
+                    <span class="skill-tag more">1 Patent</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Dr. Vandana Kate -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Vandana Kate">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Dr. Vandana<span class="star">★</span> 4.9</h3>
+                        <h4 class="mentor-last-name">Kate</h4>
+                        <p class="mentor-title">PhD Pursuing (22+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator green">
+                    <span>92% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">AI/ML</span>
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">40+ Papers</span>
+                    <span class="skill-tag more">6 Patents</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Dr. Ajeet Kumar Jain -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Dr. Ajeet Kumar Jain">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Dr. Ajeet<span class="star">★</span> 4.7</h3>
+                        <h4 class="mentor-last-name">Kumar Jain</h4>
+                        <p class="mentor-title">PhD (34+ Years including TIFR)</p>
+                    </div>
+                </div>
+                <div class="match-indicator green">
+                    <span>85% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">16 Papers</span>
+                    <span class="skill-tag">Disruptive Tech</span>
+                    <span class="skill-tag more">Industry Expert</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Nisha Rathi -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Prof. Nisha Rathi">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Nisha<span class="star">★</span> 4.6</h3>
+                        <h4 class="mentor-last-name">Rathi</h4>
+                        <p class="mentor-title">PhD Pursuing (21+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>78% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Cyber Security</span>
+                    <span class="skill-tag">Algorithm Design</span>
+                    <span class="skill-tag">15+ Papers</span>
+                    <span class="skill-tag more">3 Patents</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Nidhi Nigam -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/72.jpg" alt="Prof. Nidhi Nigam">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Nidhi<span class="star">★</span> 4.5</h3>
+                        <h4 class="mentor-last-name">Nigam</h4>
+                        <p class="mentor-title">PhD Pursuing (15+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>75% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Cyber Security</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">15+ Papers</span>
+                    <span class="skill-tag more">3 Patents</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Manoj Kumar Gupta -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Prof. Manoj Kumar Gupta">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Manoj<span class="star">★</span> 4.4</h3>
+                        <h4 class="mentor-last-name">Kumar Gupta</h4>
+                        <p class="mentor-title">ME (14+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>72% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Software Engineering</span>
+                    <span class="skill-tag">Cloud Computing</span>
+                    <span class="skill-tag">10+ Papers</span>
+                    <span class="skill-tag more">Industry Experience</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Chanchal Bansal -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Prof. Chanchal Bansal">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Chanchal<span class="star">★</span> 4.3</h3>
+                        <h4 class="mentor-last-name">Bansal</h4>
+                        <p class="mentor-title">M.Tech (14+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>70% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Data Mining</span>
+                    <span class="skill-tag">Image Processing</span>
+                    <span class="skill-tag">8+ Papers</span>
+                    <span class="skill-tag more">Salesforce</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Garima Joshi -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/60.jpg" alt="Prof. Garima Joshi">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Garima<span class="star">★</span> 4.5</h3>
+                        <h4 class="mentor-last-name">Joshi</h4>
+                        <p class="mentor-title">PhD Pursuing (15+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator green">
+                    <span>82% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Deep Learning</span>
+                    <span class="skill-tag">Data Mining</span>
+                    <span class="skill-tag">12 Papers</span>
+                    <span class="skill-tag more">2 Patents</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Shruti Lashkari -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Prof. Shruti Lashkari">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Shruti<span class="star">★</span> 4.4</h3>
+                        <h4 class="mentor-last-name">Lashkari</h4>
+                        <p class="mentor-title">M.Tech (13+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>76% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Data Science</span>
+                    <span class="skill-tag">Cloud Computing</span>
+                    <span class="skill-tag">8 Papers</span>
+                    <span class="skill-tag more">2 Patents</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Satyam Shrivastava -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/50.jpg" alt="Prof. Satyam Shrivastava">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Satyam<span class="star">★</span> 4.3</h3>
+                        <h4 class="mentor-last-name">Shrivastava</h4>
+                        <p class="mentor-title">M.Tech (12+ Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>74% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Cyber Security</span>
+                    <span class="skill-tag">Cloud Computing</span>
+                    <span class="skill-tag">10+ Papers</span>
+                    <span class="skill-tag more">Industry Connect</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Sweta Gupta -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/58.jpg" alt="Prof. Sweta Gupta">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Sweta<span class="star">★</span> 4.2</h3>
+                        <h4 class="mentor-last-name">Gupta</h4>
+                        <p class="mentor-title">M.Tech (10 Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>68% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Data Mining</span>
+                    <span class="skill-tag">Image Processing</span>
+                    <span class="skill-tag">6 Papers</span>
+                    <span class="skill-tag more">Emerging Tech</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Ashwinee Gadwal -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/70.jpg" alt="Prof. Ashwinee Gadwal">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Ashwinee<span class="star">★</span> 4.1</h3>
+                        <h4 class="mentor-last-name">Gadwal</h4>
+                        <p class="mentor-title">MCA (5 Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>65% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Blockchain</span>
+                    <span class="skill-tag">Emerging Tech</span>
+                    <span class="skill-tag">1 Paper</span>
+                    <span class="skill-tag more">Industry Trends</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Ashish Anjana -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/60.jpg" alt="Prof. Ashish Anjana">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Ashish<span class="star">★</span> 4.0</h3>
+                        <h4 class="mentor-last-name">Anjana</h4>
+                        <p class="mentor-title">M.Tech (10 Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>62% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Data Mining</span>
+                    <span class="skill-tag">Data Warehousing</span>
+                    <span class="skill-tag">2 Papers</span>
+                    <span class="skill-tag more">Practical Focus</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+
+            <!-- Prof. Vibhore Jain -->
+            <div class="mentor-card">
+                <div class="mentor-info">
+                    <div class="mentor-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Prof. Vibhore Jain">
+                    </div>
+                    <div class="mentor-header">
+                        <h3 class="mentor-name">Prof. Vibhore<span class="star">★</span> 4.0</h3>
+                        <h4 class="mentor-last-name">Jain</h4>
+                        <p class="mentor-title">M.Tech (4 Years)</p>
+                    </div>
+                </div>
+                <div class="match-indicator yellow">
+                    <span>60% Match</span>
+                </div>
+                <div class="mentor-skills">
+                    <span class="skill-tag">Data Mining</span>
+                    <span class="skill-tag">Research Methods</span>
+                    <span class="skill-tag">1 Paper</span>
+                    <span class="skill-tag more">Early Career</span>
+                </div>
+                <a href="#" class="view-profile-btn">View Profile</a>
+            </div>
+        </div>
+        
+        <!-- View More Button -->
+        <div class="view-more-container">
+            <a href="#" class="view-more-btn">View All Faculty Mentors</a>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer class="main-footer">
+        <p>“A mentor is someone who allows you to see the hope inside yourself.” – Oprah Winfrey</p>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+        </div>
+        <p class="copy">© 2025 Guidance Grid. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+<script>
+    // On signup page load, check for role in URL parameters
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('type');
+        if (role && ['mentor', 'mentee'].includes(role)) {
+            document.getElementById('role').value = role;
+        }
+    });
+</script>

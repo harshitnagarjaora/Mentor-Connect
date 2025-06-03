@@ -22,7 +22,7 @@
 ---
 
 ## 📁 Project Structure
-
+```
 Mentor-Connect/
 │
 ├── static/ # CSS, JS, images
@@ -32,7 +32,7 @@ Mentor-Connect/
 ├── database.db # SQLite DB
 ├── utils/ # Helper functions
 └── README.md # Project documentation
-
+```
 ---
 
 ## 🛠️ Tech Stack
@@ -54,7 +54,7 @@ Mentor-Connect/
 |------------------|----------------|----------------------|
 | ![mentee](https://dummyimage.com/300x200/ccc/000&text=Mentee+Dashboard) | ![chat](https://dummyimage.com/300x200/ccc/000&text=Chat+UI) | ![mentor](https://dummyimage.com/300x200/ccc/000&text=Mentor+Request+Page) |
 
-_(Replace with real screenshots)_
+
 
 ---
 
@@ -65,3 +65,18 @@ _(Replace with real screenshots)_
 ```bash
 git clone https://github.com/harshitnagarjaora/Mentor-Connect.git
 cd Mentor-Connect
+```
+### 2. Create Virtual Environment
+```
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+### 3. Install Requirements
+```
+pip install -r requirements.txt
+```
+### 4. Run the App
+```
+python app.py
+```
+App runs on: http://localhost:5000
